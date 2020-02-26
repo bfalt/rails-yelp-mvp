@@ -17,7 +17,8 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    @review = Review.find(review_params)
+    @review = Review.new
+    @reviews = @restaurant.reviews
   end
 
   def destroy
