@@ -1,10 +1,5 @@
 class ReviewsController < ApplicationController
 
-  def index
-    raise
-    @reviews = Review.all
-  end
-
   def new
     @restaurant = Restaurant.find(params[:restaurant_id])
     @review = Review.new
@@ -15,19 +10,14 @@ class ReviewsController < ApplicationController
     @restaurant = Restaurant.find(params[:restaurant_id])
     @review.restaurant = @restaurant
     if @review.save
-      redirect_to review_path(restaurant_id)
+      redirect_to @restaurant
     else
       render 'new'
     end
   end
 
   def show
-  end
-
-  def edit
-  end
-
-  def update
+    @review = Review.find(review_params)
   end
 
   def destroy
